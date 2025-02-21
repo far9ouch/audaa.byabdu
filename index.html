@@ -1,1 +1,72 @@
- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AUDAA - Text to Speech Converter</title>
+    <link rel="stylesheet" href="static/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <i class="fas fa-headphones"></i>
+            <span>AUDAA</span>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="hero">
+            <h1>Transform Text to Natural Speech</h1>
+            <p>Professional text-to-speech conversion in multiple languages</p>
+        </div>
+
+        <div class="card">
+            <div class="api-info">
+                <h2>API Integration Instructions</h2>
+                <p>To use the AUDAA Text-to-Speech service, follow these steps:</p>
+                
+                <ol>
+                    <li>Install the Zyphra client:
+                        <pre><code>pip install zyphra</code></pre>
+                    </li>
+                    <li>Initialize the client:
+                        <pre><code>from zyphra import ZyphraClient
+client = ZyphraClient(api_key="your-api-key")</code></pre>
+                    </li>
+                    <li>Generate speech:
+                        <pre><code>audio_data = client.audio.speech.create(
+    text="Hello, world!",
+    language_iso_code="en-us",
+    mime_type="audio/mp3",
+    speaking_rate=15
+)</code></pre>
+                    </li>
+                </ol>
+            </div>
+
+            <div class="features">
+                <h2>Features</h2>
+                <ul>
+                    <li><i class="fas fa-globe"></i> Multiple language support</li>
+                    <li><i class="fas fa-tachometer-alt"></i> Adjustable speaking rate</li>
+                    <li><i class="fas fa-file-audio"></i> Multiple audio formats</li>
+                    <li><i class="fas fa-clock"></i> Real-time preview</li>
+                </ul>
+            </div>
+
+            <div class="demo-section">
+                <h2>Try the Demo</h2>
+                <p>Download our demo application to try AUDAA:</p>
+                <a href="https://github.com/far9ouch/audaa.byabdu" class="demo-button">
+                    <i class="fab fa-github"></i> View on GitHub
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2024 AUDAA - Professional Text-to-Speech Service</p>
+    </footer>
+</body>
+</html> 
