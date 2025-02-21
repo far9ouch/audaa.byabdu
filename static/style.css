@@ -524,4 +524,117 @@ label::after {
 .github-link:hover {
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Additional styles for landing page */
+.feature-list {
+    margin-bottom: 2rem;
+}
+
+.feature-list h2,
+.installation h2,
+.demo-video h2 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.feature-list ul {
+    list-style: none;
+    padding: 0;
+}
+
+.feature-list li {
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.feature-list i,
+.installation h2 i,
+.demo-video h2 i {
+    color: var(--primary-color);
+}
+
+.code-block {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 0.8rem;
+    border-radius: 8px;
+    margin: 0.5rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.copy-btn {
+    background: transparent;
+    border: none;
+    color: var(--primary-color);
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.copy-btn:hover {
+    color: var(--secondary-color);
+    transform: scale(1.1);
+}
+
+.video-container {
+    margin: 2rem 0;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.demo-gif {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.download-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    text-decoration: none;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    font-weight: 600;
+    border: 1px solid var(--glass-border);
+    transition: all 0.3s ease;
+}
+
+.download-link:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.social-links {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.social-links a {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--primary-color);
+    transform: translateY(-2px);
 } 

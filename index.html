@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AUDAA - Text to Speech Converter</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="static/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
@@ -20,138 +20,89 @@
             <h1>Transform Text to Natural Speech</h1>
             <p>Professional text-to-speech conversion in multiple languages</p>
         </div>
-        
-        {% if error %}
-        <div class="error">
-            <i class="fas fa-exclamation-circle"></i>
-            {{ error }}
-        </div>
-        {% endif %}
 
         <div class="card">
-            <form method="POST" id="ttsForm">
-                <div class="form-group">
-                    <label for="text">
-                        <i class="fas fa-pen"></i>
-                        Text to convert:
-                    </label>
-                    <textarea name="text" id="text" required placeholder="Enter your text here..."></textarea>
-                    <div class="char-count">0 characters</div>
+            <div class="api-info">
+                <div class="feature-list">
+                    <h2><i class="fas fa-star"></i> Features</h2>
+                    <ul>
+                        <li><i class="fas fa-globe"></i> Multiple language support</li>
+                        <li><i class="fas fa-sliders-h"></i> Adjustable speaking rate</li>
+                        <li><i class="fas fa-file-audio"></i> Multiple audio formats (MP3, WAV, WebM, OGG)</li>
+                        <li><i class="fas fa-play"></i> Real-time preview functionality</li>
+                    </ul>
                 </div>
 
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="language">
-                            <i class="fas fa-globe"></i>
-                            Language:
-                        </label>
-                        <select name="language" id="language">
-                            <option value="en-us">English (US)</option>
-                            <option value="fr-fr">French</option>
-                            <option value="de">German</option>
-                            <option value="ja">Japanese</option>
-                            <option value="ko">Korean</option>
-                            <option value="cmn">Mandarin Chinese</option>
-                        </select>
-                    </div>
+                <div class="installation">
+                    <h2><i class="fas fa-download"></i> Installation</h2>
+                    <p>To use this service locally:</p>
+                    <ol>
+                        <li>Clone the repository:
+                            <div class="code-block">
+                                <code>git clone https://github.com/far9ouch/audaa.byabdu.git</code>
+                                <button onclick="copyCode(this)" class="copy-btn">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                        </li>
+                        <li>Install requirements:
+                            <div class="code-block">
+                                <code>pip install -r requirements.txt</code>
+                                <button onclick="copyCode(this)" class="copy-btn">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                        </li>
+                        <li>Run the Flask app:
+                            <div class="code-block">
+                                <code>python app.py</code>
+                                <button onclick="copyCode(this)" class="copy-btn">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                        </li>
+                        <li>Visit <code>http://localhost:5000</code> in your browser</li>
+                    </ol>
+                </div>
 
-                    <div class="form-group">
-                        <label for="speaking_rate">
-                            <i class="fas fa-tachometer-alt"></i>
-                            Speaking Rate:
-                        </label>
-                        <div class="range-container">
-                            <input type="range" name="speaking_rate" id="speaking_rate" 
-                                min="5" max="35" value="15" required>
-                            <span class="range-value">15</span>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="format">
-                            <i class="fas fa-file-audio"></i>
-                            Format:
-                        </label>
-                        <select name="format" id="format">
-                            <option value="mp3">MP3</option>
-                            <option value="wav">WAV</option>
-                            <option value="webm">WebM</option>
-                            <option value="ogg">OGG</option>
-                        </select>
+                <div class="demo-video">
+                    <h2><i class="fas fa-play-circle"></i> Demo</h2>
+                    <div class="video-container">
+                        <img src="static/demo.gif" alt="AUDAA Demo" class="demo-gif">
                     </div>
                 </div>
 
-                <div class="button-group">
-                    <button type="button" id="previewBtn" class="secondary">
-                        <i class="fas fa-play"></i> Preview
-                    </button>
-                    <button type="submit">
-                        <i class="fas fa-download"></i> Generate & Download
-                    </button>
+                <div class="cta-buttons">
+                    <a href="https://github.com/far9ouch/audaa.byabdu" class="github-link">
+                        <i class="fab fa-github"></i> View on GitHub
+                    </a>
+                    <a href="https://github.com/far9ouch/audaa.byabdu/archive/refs/heads/main.zip" class="download-link">
+                        <i class="fas fa-download"></i> Download ZIP
+                    </a>
                 </div>
-            </form>
-
-            <div id="previewPlayer" class="preview-player" style="display: none;">
-                <audio id="audioPreview" controls></audio>
             </div>
         </div>
     </div>
 
     <footer>
-        <p>© 2024 AUDAA - Professional Text-to-Speech Service</p>
+        <p>© 2024 AUDAA - Professional Text-to-Speech Service by far9ouch</p>
+        <div class="social-links">
+            <a href="mailto:far9ouc07@gmail.com"><i class="fas fa-envelope"></i></a>
+            <a href="https://github.com/far9ouch"><i class="fab fa-github"></i></a>
+        </div>
     </footer>
 
     <script>
-        // Character counter
-        document.getElementById('text').addEventListener('input', function(e) {
-            document.querySelector('.char-count').textContent = `${e.target.value.length} characters`;
-        });
-
-        // Range value display
-        document.getElementById('speaking_rate').addEventListener('input', function(e) {
-            document.querySelector('.range-value').textContent = e.target.value;
-        });
-
-        // Preview functionality
-        document.getElementById('previewBtn').addEventListener('click', async function() {
-            const text = document.getElementById('text').value;
-            const language = document.getElementById('language').value;
-            const speaking_rate = document.getElementById('speaking_rate').value;
-
-            if (!text) {
-                alert('Please enter some text first');
-                return;
-            }
-
-            this.disabled = true;
-            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating...';
-
-            try {
-                const response = await fetch('/api/preview', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ text, language, speaking_rate })
-                });
-
-                const data = await response.json();
-                
-                if (data.success) {
-                    const audio = document.getElementById('audioPreview');
-                    audio.src = `data:audio/mp3;base64,${data.audio}`;
-                    document.getElementById('previewPlayer').style.display = 'block';
-                    audio.play();
-                } else {
-                    alert('Preview generation failed: ' + data.error);
-                }
-            } catch (error) {
-                alert('Error generating preview: ' + error);
-            }
-
-            this.disabled = false;
-            this.innerHTML = '<i class="fas fa-play"></i> Preview';
-        });
+        function copyCode(button) {
+            const codeBlock = button.parentElement.querySelector('code');
+            navigator.clipboard.writeText(codeBlock.textContent);
+            
+            const icon = button.querySelector('i');
+            icon.className = 'fas fa-check';
+            setTimeout(() => {
+                icon.className = 'fas fa-copy';
+            }, 2000);
+        }
     </script>
 </body>
 </html> 
