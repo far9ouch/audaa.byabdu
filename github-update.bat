@@ -8,7 +8,18 @@ echo    By: far9ouch
 echo ====================================
 echo.
 
+:: Configure Git if not already done
+echo Configuring Git...
+git config --global user.email "far9ouc07@gmail.com"
+git config --global user.name "far9ouch"
+
+:: First try to pull any changes
+echo.
+echo Checking for remote changes...
+git pull origin main
+
 :: Add all changes
+echo.
 echo Adding changes to Git...
 git add .
 
@@ -22,22 +33,38 @@ echo.
 echo Creating commit...
 git commit -m "Update %commit_date% %commit_time%"
 
-:: Push to GitHub
+:: Try normal push first
 echo.
-echo Pushing to GitHub...
+echo Attempting to push to GitHub...
 git push origin main
 
+:: If normal push fails, offer force push option
 if errorlevel 1 (
     echo.
-    echo Error: Push failed!
-    echo Please check your internet connection or GitHub credentials.
+    echo Normal push failed. Would you like to:
+    echo [1] Force push (overwrites remote changes)
+    echo [2] Cancel
     echo.
-    echo If you need to set up credentials:
-    echo 1. git config --global user.email "far9ouc07@gmail.com"
-    echo 2. git config --global user.name "far9ouch"
-    echo.
-    pause
-    exit /b 1
+    set /p choice="Enter your choice (1 or 2): "
+    
+    if "%choice%"=="1" (
+        echo.
+        echo Force pushing to GitHub...
+        git push -f origin main
+        
+        if errorlevel 1 (
+            echo.
+            echo Error: Force push failed!
+            echo Please check your internet connection or GitHub credentials.
+            pause
+            exit /b 1
+        )
+    ) else (
+        echo.
+        echo Update cancelled.
+        pause
+        exit /b 0
+    )
 )
 
 echo.
